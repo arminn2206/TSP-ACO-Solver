@@ -4,28 +4,32 @@
 	Adapted from natID.SDK/DevEnv/SetupCollectors/maps.xml (prof. Dzafic's
 	B_S03_Maps installer config), which this project was built on top of.
 
+	Renamed TSP_ACO.xml -> tspaco.xml (2026-09-08): executableName had to lose
+	its underscore for dpkg-deb (see the executable comment below).
+
 	Run it with:
-	    SetupCollector.exe %USERPROFILE%\Setups\TSP_ACO.xml
+	    SetupCollector.exe %USERPROFILE%\Setups\tspaco.xml
 
 	Resources are NOT listed here. SetupCollector reads res/DevRes.xml from the
 	"dev" folder below and pulls everything it references - res/main.xml,
 	res/tr/EN/main.xml, res/tr/BA/main.xml, res/maps/Bosnia.xml, plus the
 	Common/Icons, Common/Sounds and Common/Regionals entries from the SDK.
 -->
-<SetupCollector xmlns:win="windows" xmlns:mac="macOS" xmlns:lin="linux" executableName="TSP_ACO">
+<SetupCollector xmlns:win="windows" xmlns:mac="macOS" xmlns:lin="linux" executableName="tspaco">
 
 	<!--
 		dev        - the source project. "~" is the home directory, so this is
 		             C:\Users\Armin\ACO_TSP_PROJECT locally. CI symlinks the
 		             checkout to the same path so this attribute never changes.
 		executable - Release build output. SOLUTION_NAME (CMakeLists.txt) and
-		             APP_NAME (TSP_ACO.cmake) are both TSP_ACO, so the folder and
-		             the binary share one name - same convention as maps.xml.
+		             APP_NAME (tspaco.cmake) are both tspaco - lowercase, no
+		             underscore, because dpkg-deb (Linux packaging) rejects
+		             underscores in package names and this name is used as-is.
 		out        - where the installer is written.
 	-->
 	<Folders dev="~ACO_TSP_PROJECT"
-			 executable="$RAMDisk/Out/TSP_ACO/Release"
-			 out="$RAMDisk/Setup/TSP_ACO"/>
+			 executable="$RAMDisk/Out/tspaco/Release"
+			 out="$RAMDisk/Setup/tspaco"/>
 
 	<Packages debug="false">
 		<Package name="natGUIALL"/>

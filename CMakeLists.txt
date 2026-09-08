@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.18)
 
-# Solution name, executable name and target name are all TSP_ACO, so the build
-# output is Out/TSP_ACO/<Config>/TSP_ACO(.exe/.app). Keeping them identical is
-# what lets packaging/TSP_ACO.xml and the CI workflow use one name everywhere.
-set(SOLUTION_NAME TSP_ACO)
+# Renamed from TSP_ACO to tspaco (2026-09-08): dpkg-deb rejects package names
+# containing underscores, so the Linux CI job failed at packaging time.
+# "tspaco" is the internal binary/target name only - the user-visible app
+# name is still "ACO TSP Solver" (set via DevRes.xml / product info, not
+# this name). Solution, project, target and executable are all "tspaco",
+# so the build output is Out/tspaco/<Config>/tspaco(.exe/.app).
+set(SOLUTION_NAME tspaco)
 
 #BEGIN common part for all solutions
 project(${SOLUTION_NAME})
@@ -23,4 +26,4 @@ include(${NATID_SDK_ROOT}/DevEnv/Common.cmake)
 include(${NATID_SDK_ROOT}/DevEnv/natGUI.cmake)
 include(${NATID_SDK_ROOT}/DevEnv/MatrixLib.cmake)
 
-include(TSP_ACO.cmake)
+include(tspaco.cmake)

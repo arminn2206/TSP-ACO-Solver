@@ -29,3 +29,5 @@ cmake_install.cmake
 # OS cruft
 Thumbs.db
 .DS_Store
+setup.inf 
+setup.rpt 

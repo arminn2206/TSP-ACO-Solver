@@ -1,6 +1,6 @@
-# Renamed from maps.cmake. The APP_* variables were MAPS_* - a leftover from the
-# B_S03_Maps example this project started from. They are local to this file.
-set(APP_NAME TSP_ACO)
+# Renamed from TSP_ACO.cmake (2026-09-08) - dpkg-deb rejects underscores in
+# package names, so the executable/target name had to lose the underscore.
+set(APP_NAME tspaco)
 
 file(GLOB APP_SOURCES  ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp)
 file(GLOB APP_INCS  ${CMAKE_CURRENT_LIST_DIR}/src/*.h)
