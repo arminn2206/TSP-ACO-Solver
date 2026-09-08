@@ -18,7 +18,7 @@
 		     flag drawn on the map. -->
 		<Res id="newCities" path="Common/Icons/Flags/endFlag48.png"/>
 		<!-- Toolbar icon for "Compare last 2 runs" (ToolBar.h, action cMenuAnimation/50). -->
-		<Res id="compare" path="Common/Icons/compare.png"/>
+		<Res id="compare" path=":appIcon/compare.png"/>
 		<!-- Toolbar icon for "Export run (CSV)" (ToolBar.h, action cMenuAnimation/40).
 		     Path is relative to the SDK's Common/Icons folder, same convention as
 		     every other Res entry in this block - i.e. this resolves to
