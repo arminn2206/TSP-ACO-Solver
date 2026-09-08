@@ -129,7 +129,7 @@ jobs:
           Use the .MSI file (ACO TSP Solver.msi) - it's the recommended installer.
           If Windows blocks the .EXE, that's a false SmartScreen alert (unsigned app). The .MSI works without warnings.
           "@ | Out-File installer-output/README.txt -Encoding UTF8
-          
+
       - name: Zip installer pair
         shell: pwsh
         run: Compress-Archive -Path installer-output/* -DestinationPath ${{ env.APP_NAME }}-win.zip
@@ -179,6 +179,22 @@ jobs:
       - name: Stage and zip the .app
         run: |
           mkdir -p "$GITHUB_WORKSPACE/installer-output"
+          cat > "$GITHUB_WORKSPACE/installer-output/README.txt" <<'EOF'
+          macOS Installation Guide
+          ========================
+          1. Unzip this folder
+          2. Drag "ACO TSP Solver.app" to Applications
+
+          FIRST LAUNCH:
+          The app is not notarized, so macOS will block a normal double-click.
+          Instead:
+            - Right-click on the app -> Open
+            - Click "Open" in the dialog
+
+          After the first launch, it opens normally.
+
+          More info: https://github.com/arminn2206/TSP-ACO-Solver
+          EOF
           # -print0 / read -d '' - "ACO TSP Solver.app" has spaces, which break
           # a plain `find | head -1` + `xargs basename` pipeline (xargs splits on
           # whitespace by default).
@@ -188,8 +204,10 @@ jobs:
           cp -R "$APP_PATH" "$GITHUB_WORKSPACE/installer-output/"
           cd "$GITHUB_WORKSPACE/installer-output"
           APP="$(basename "$APP_PATH")"
-          # ditto, not zip - it preserves the executable bit and resource forks
-          ditto -c -k --keepParent --sequesterRsrc "$APP" ${{ env.APP_NAME }}-macOS-Silicon.zip
+          # ditto, not zip - it preserves the executable bit and resource forks.
+          # README.txt is listed explicitly: ditto only zips what's named on the
+          # command line, not everything sitting in the current folder.
+          ditto -c -k --keepParent --sequesterRsrc "$APP" README.txt ${{ env.APP_NAME }}-macOS-Silicon.zip
 
       - uses: actions/upload-artifact@v4
         with:
@@ -235,13 +253,29 @@ jobs:
       - name: Stage and zip the .app
         run: |
           mkdir -p "$GITHUB_WORKSPACE/installer-output"
+          cat > "$GITHUB_WORKSPACE/installer-output/README.txt" <<'EOF'
+          macOS Installation Guide
+          ========================
+          1. Unzip this folder
+          2. Drag "ACO TSP Solver.app" to Applications
+
+          FIRST LAUNCH:
+          The app is not notarized, so macOS will block a normal double-click.
+          Instead:
+            - Right-click on the app -> Open
+            - Click "Open" in the dialog
+
+          After the first launch, it opens normally.
+
+          More info: https://github.com/arminn2206/TSP-ACO-Solver
+          EOF
           APP_PATH=""
           while IFS= read -r -d '' f; do APP_PATH="$f"; break; done < <(find $HOME/natID.RAMDisk/Setup -maxdepth 5 -type d -name "*.app" -print0)
           if [ -z "$APP_PATH" ]; then echo "ERROR: no .app bundle in Setup tree"; exit 1; fi
           cp -R "$APP_PATH" "$GITHUB_WORKSPACE/installer-output/"
           cd "$GITHUB_WORKSPACE/installer-output"
           APP="$(basename "$APP_PATH")"
-          ditto -c -k --keepParent --sequesterRsrc "$APP" ${{ env.APP_NAME }}-macOS-Intel.zip
+          ditto -c -k --keepParent --sequesterRsrc "$APP" README.txt ${{ env.APP_NAME }}-macOS-Intel.zip
 
       - uses: actions/upload-artifact@v4
         with:
@@ -316,6 +350,19 @@ jobs:
         run: |
           mkdir -p "$GITHUB_WORKSPACE/installer-output"
           find $HOME/natID.RAMDisk/Setup -name "*.deb" -exec cp {} "$GITHUB_WORKSPACE/installer-output/" \;
+          cat > "$GITHUB_WORKSPACE/installer-output/README.txt" <<'EOF'
+          Linux Installation Guide
+          ========================
+          Unzip this folder and install with:
+            sudo apt install ./tspaco.deb
+
+          This installs the app and dependencies (GTK 4, libadwaita, OpenAL).
+
+          Launch from your application menu or terminal:
+            tspaco
+
+          More info: https://github.com/arminn2206/TSP-ACO-Solver
+          EOF
           ls -la "$GITHUB_WORKSPACE/installer-output/"
           cd "$GITHUB_WORKSPACE"
           zip -j ${{ env.APP_NAME }}-linux.zip installer-output/*
@@ -364,14 +411,16 @@ jobs:
 
             | Platform | File |
             |----------|------|
-            | Windows | `TSP_ACO-win.zip` (installer .exe + .msi - keep both together) |
+            | Windows | `TSP_ACO-win.zip` (installer .exe + .msi - keep both together; **use the .MSI**, see README.txt inside) |
             | macOS Apple Silicon | `TSP_ACO-macOS-Silicon.zip` (M1/M2/M3/M4) |
             | macOS Intel | `TSP_ACO-macOS-Intel.zip` |
             | Linux (Ubuntu 24.04+) | `TSP_ACO-linux.zip` (contains .deb) |
 
+            Each zip includes a `README.txt` with install instructions specific to that platform.
+
             ### Install notes
 
-            - **Windows**: unzip, run the .exe (or the .msi directly)
+            - **Windows**: unzip, run the .msi (the .exe is included as an alternative wrapper, but unsigned .exe files commonly trigger a false SmartScreen "unrecognized app" warning - the .msi does not)
             - **macOS**: unzip, drag to Applications, first launch: right-click -> Open
               (the app is unsigned, so Gatekeeper blocks a normal double-click)
             - **Linux**: unzip, then `sudo apt install ./*.deb`
