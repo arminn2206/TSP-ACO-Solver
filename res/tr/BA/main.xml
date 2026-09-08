@@ -1,0 +1,121 @@
+<?xml version='1.0'?>
+<DevRes>
+	<Translations>
+		<Res id="appTitle" tr="ACO Rješavač TSP-a"/>
+		<Res id="Animation" tr="Animacija"/>
+		<Res id="start" tr="Pokreni"/>
+		<Res id="startTT" tr="Pokreni animaciju"/>
+		<Res id="stop" tr="Zaustavi"/>
+		<Res id="stopTT" tr="Zaustavi animaciju"/>
+		<Res id="lblNumAnts" tr="Broj mrava:"/>
+		<Res id="lblNumIterations" tr="Broj iteracija:"/>
+		<Res id="lblAlpha" tr="Alfa (feromon):"/>
+		<Res id="lblBeta" tr="Beta (heuristika):"/>
+		<Res id="lblEvaporation" tr="Stopa isparavanja:"/>
+		<Res id="lblSpeed" tr="Brzina:"/>
+		<Res id="lblStart" tr="Oznaka početka:"/>
+		<Res id="pathColor" tr="Boja puta:"/>
+		<Res id="convergenceTitle" tr="Konvergencija (najbolji trošak do sada)"/>
+		<Res id="convergedAtIter" tr="Konvergiralo u iteraciji %d"/>
+		<Res id="bestAtIter" tr="Najbolje u iteraciji %d (iteracija %d/%d)"/>
+		<Res id="convBest" tr="Najbolje do sada"/>
+		<Res id="convIterBest" tr="Najbolje u iteraciji"/>
+		<!-- Dvolinijska oznaka referentne linije najbližeg susjeda na desnoj ivici
+		     grafa konvergencije (ViewConvergence.h). Ranije je bila tvrdo kodirana na
+		     engleskom - jedino mjesto gdje se dvojezičnost stvarno lomila: graf je
+		     pisao "Nearest / neighbour 812" dok je red pored njega u bočnoj traci
+		     pisao "Najbliži susjed". Podijeljeno u dva ključa jer se oznaka crta kao
+		     dva reda kako bi stala unutar cMarginRight.
+		     convNN2 nosi %.0f - vrijednost se dodaje unutar prevedenog stringa, pa
+		     jezik koji broj stavlja prvi to može uraditi. -->
+		<Res id="convNN1" tr="Najbliži"/>
+		<Res id="convNN2" tr="komšija %.0f"/>
+		<Res id="closeNOK" tr="Greška! Animacija je u toku!"/>
+		<Res id="cloeErr" tr="Zaustavite animaciju pa onda zatvorite aplikaciju!"/>
+		<Res id="settings" tr="Podešenja"/>
+		<Res id="settingsTT" tr="Podešenja (jezik, prikaz feromona)"/>
+		<!-- Settings -->
+		<Res id="dlgSettings" tr="Podešenja"/>
+		<Res id="lblLang" tr="Trenutni jezik aplikacija:"/>
+		<Res id="lblLang2" tr="Jezik aplikacije nakon njenog restarta:"/>
+		<Res id="chbTBIcsAndLbls" tr="Prikaži labele ispod ikona na alatnoj traci"/>
+		<Res id="RestartRequired" tr="Restartovati aplikaciju"/>
+		<Res id="RestartRequiredInfo" tr="Neke od promijenjenih postavki zahtijevaju ponovno pokretanje aplikacije kako bi bile primijenjene"/>
+		<Res id="Restart" tr="Restartovati"/>
+		<Res id="DoNoRestart" tr="Nemoj restartovati"/>
+		<Res id="chbShowTownNames" tr="Pokaži imena gradova"/>
+		<Res id="chbPlaySound" tr="Puštati zvuk u toku pretrage"/>
+		<Res id="lblPheromoneColor" tr="Boja feromona:"/>
+		<Res id="lblPheromoneMode" tr="Prikaz feromona:"/>
+		<!-- Preimenovano iz pheromoneModeAll / pheromoneModeThreshold.
+		     natGUI čuva samo prvih 21 znak ključa, a "pheromoneModeThreshold" ima 22 -
+		     radilo je samo zato što nijedan drugi ključ nije dijelio isti skraćeni
+		     prefiks. Oba su sada sigurno unutar granice. -->
+		<Res id="phModeAll" tr="Sve ivice"/>
+		<Res id="phModeThreshold" tr="Prag"/>
+		<Res id="reset" tr="Poništi"/>
+		<Res id="resetTT" tr="Obriši trenutne rezultate i počni ispočetka"/>
+		<!-- Preimenovano iz resetWhileRunning / resetWhileRunningInfo (17 i 21 znak).
+		     Info ključ je bio tačno na granici od 21 znaka, jedan znak od kolizije sa
+		     vlastitim prefiksom - ista greška koja je natjerala newCitiesWhileRunning*
+		     da postane newCitiesBusy*. -->
+		<Res id="resetBusy" tr="Nije moguće poništiti"/>
+		<Res id="resetBusyInfo" tr="Zaustavite trenutno izvršavanje prije poništavanja."/>
+		<Res id="newCities" tr="Novi gradovi"/>
+		<Res id="newCitiesTT" tr="Izaberi novi nasumični skup gradova"/>
+		<Res id="newCitiesBusy" tr="Nije moguće izabrati nove gradove"/>
+		<Res id="newCitiesBusyInfo" tr="Zaustavite trenutno izvršavanje prije izbora novog skupa gradova."/>
+		<Res id="exportCSV" tr="Izvezi rezultate (CSV)"/>
+		<!-- Tooltip za dugme "Izvezi rezultate (CSV)" na alatnoj traci (ToolBar.h,
+		     akcija cMenuAnimation/40). Odvojeno od "exportCSV", koji se koristi i kao
+		     tekst stavke u meniju i kao labela ispod ikone na alatnoj traci - natGUI
+		     stavke na alatnoj traci primaju poseban parametar za tooltip, isti obrazac
+		     kao startTT/stopTT/resetTT/newCitiesTT/compareRunsTT. -->
+		<Res id="exportCSVTT" tr="Izvezi završeno izvršavanje u CSV"/>
+		<Res id="exportBusy" tr="Nije moguće izvesti"/>
+		<Res id="exportBusyInfo" tr="Zaustavite trenutno izvršavanje prije izvoza."/>
+		<Res id="exportNone" tr="Nema šta izvesti"/>
+		<Res id="exportNoneInfo" tr="Pokrenite algoritam barem jednom prije izvoza."/>
+		<Res id="exportOK" tr="Izvoz završen"/>
+		<Res id="exportFail" tr="Izvoz neuspješan"/>
+		<Res id="lblSeed" tr="Seed (0=slučajno):"/>
+		<Res id="statsTitle" tr="Statistika izvršavanja"/>
+		<Res id="statsIter" tr="Iteracija:"/>
+		<Res id="statsBest" tr="Najbolji trošak:"/>
+		<Res id="statsBestIter" tr="Najbolje u iteraciji:"/>
+		<Res id="statsNN" tr="Najbliži komšija:"/>
+		<Res id="statsGain" tr="Poboljšanje:"/>
+		<Res id="statsTime" tr="Trajanje:"/>
+		<Res id="statsCities" tr="Gradova:"/>
+		<Res id="statsAnts" tr="Mrava:"/>
+		<Res id="statsSeed" tr="Sjeme:"/>
+		<Res id="statsStatus" tr="Status:"/>
+		<Res id="statusIdle" tr="Neaktivno"/>
+		<Res id="statusRunning" tr="U toku"/>
+		<Res id="statusConverged" tr="Konvergiralo"/>
+		<Res id="statusDone" tr="Završeno"/>
+		<Res id="seedRandom" tr="slučajno"/>
+		<!-- Poređenje posljednja dva završena izvršavanja (DialogCompare / ViewCompare) -->
+		<Res id="compareRuns" tr="Uporedi zadnja 2 izvršavanja"/>
+		<Res id="compareTitle" tr="Poređenje posljednja dva završena izvršavanja"/>
+		<Res id="compareBusy" tr="Nije moguće porediti"/>
+		<Res id="compareBusyInfo" tr="Zaustavite trenutno izvršavanje prije poređenja."/>
+		<Res id="compareNone" tr="Nema dovoljno izvršavanja"/>
+		<Res id="compareNoneInfo" tr="Sačuvano je samo %d završenih izvršavanja, a potrebna su dva. Izvršavanje se računa samo ako dosegne SVOJU posljednju iteraciju - ona zaustavljena dugmetom Zaustavi se namjerno ne čuvaju, jer trošak skraćenog izvršavanja nije uporediv. Historija se briše i kada se izabere novi skup gradova."/>
+		<Res id="compareTB" tr="Uporedi"/>
+		<Res id="compareRunsTT" tr="Uporedi posljednja dva završena izvršavanja"/>
+		<Res id="cmpMetric" tr="Veličina"/>
+		<Res id="cmpNewer" tr="Novije"/>
+		<Res id="cmpOlder" tr="Starije"/>
+		<Res id="cmpDelta" tr="Razlika"/>
+		<Res id="cmpGrpProblem" tr="Problem"/>
+		<Res id="cmpGrpParams" tr="Parametri"/>
+		<Res id="cmpGrpResult" tr="Rezultat"/>
+		<Res id="cmpConverged" tr="Konvergiralo:"/>
+		<Res id="cmpFinalIter" tr="Zadnja iteracija (najbolje):"/>
+		<Res id="cmpMeanIter" tr="Prosjek po iteraciji:"/>
+		<Res id="cmpYes" tr="da"/>
+		<Res id="cmpNo" tr="ne"/>
+		<Res id="cmpNote" tr="Oba izvršavanja su rađena nad istim skupom gradova."/>
+	</Translations>
+</DevRes>

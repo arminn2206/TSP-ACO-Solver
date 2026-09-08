@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DevRes regionals="Common/Regionals"
+			displayName="ACO TSP Solver"
+			maintainer="Armin Memisevic"
+			email="amemisevic2@etf.unsa.ba"
+			homePage="https://github.com/idzafic/natID"
+			majorVersion="1"
+			minorVersion="0"
+			versionDate="2026-09-01"
+			comment="Ant Colony Optimization (Ant System) solver for the Traveling Salesman Problem over 15-25 cities.
+Student project by Armin Memisevic (index 20016).
+Built on the natID/natGUI framework and the B_S03_Maps example by prof. Izudin Dzafic, used with permission.
+Framework: https://github.com/idzafic/natID">
+	<Langs>
+		<Lang id="EN" name="English"/>
+		<Lang id="BA" name="Bosanski"/>
+	</Langs>
+	<ArtWork>
+		<Config path="Common/ResConfigs/natGUI.xml"/>
+		<Config path=":main.xml"/>
+	</ArtWork>
+	<Translation>
+		<Config path="Common/ResConfigs/tr/%s/natGUI.xml"/>
+		<Config path=":tr/%s/main.xml"/>
+	</Translation>
+</DevRes>

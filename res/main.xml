@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<DevRes>
+	<Images>
+		<Res id="start" path="Common/Icons/arrow_right.png"/>
+		<Res id="stop" path="Common/Icons/x.png"/>
+		<Res id="settings" path = "Common/Icons/SettingsBlue48.png"/>
+		<!-- Start-town flag. Declared with no "desktop" attribute so it resolves in
+		     both light and dark mode: Primitive::Options loads ":source"
+		     unconditionally in its constructor, so a Light-only declaration left the
+		     image unresolved on dark-mode machines. Only startFlag48.png exists on
+		     disk (no dark variant), so a single unconditional entry is correct here.
+		     The old ":goal" entry was removed - TSP has no separate goal town (the
+		     tour returns to the start), so nothing in the code ever referenced it. -->
+		<Res id="source" path="Common/Icons/Flags/startFlag48.png"/>
+		<!-- Toolbar icon for the "New cities" action. Uses the checkered flag, which
+		     is no longer used anywhere else now that the goal-town concept is gone,
+		     so it reads as its own distinct action rather than duplicating the start
+		     flag drawn on the map. -->
+		<Res id="newCities" path="Common/Icons/Flags/endFlag48.png"/>
+		<!-- Toolbar icon for "Compare last 2 runs" (ToolBar.h, action cMenuAnimation/50). -->
+		<Res id="compare" path="Common/Icons/compare.png"/>
+		<!-- Toolbar icon for "Export run (CSV)" (ToolBar.h, action cMenuAnimation/40).
+		     Path is relative to the SDK's Common/Icons folder, same convention as
+		     every other Res entry in this block - i.e. this resolves to
+		     natID.SDK/Common/Icons/openSave/save.png on disk. -->
+		<Res id="exportCSV" path="Common/Icons/openSave/save.png"/>
+	</Images>
+
+	<Sounds>
+		<Res id="flight" path="Common/Sounds/JetFlight.wav"/>
+		<Res id="cheering" path="Common/Sounds/Cheering.wav"/>
+	</Sounds>
+
+	<FileNames>
+		<Res id="map" path=":maps/Bosnia.xml"/>
+	</FileNames>
+</DevRes>

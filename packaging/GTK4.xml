@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Patched from the SDK's own natID.SDK/DevEnv/SetupCollectors/Packages/GTK4.xml.
+
+	The stock file has TWO <Group> blocks pointing at
+	$MyBin/GTK/release/lib and $MyBin/GTK/release/bin - a Linux/macOS-style
+	"release/lib + release/bin" split. On this Windows SDK install
+	(SDK dated 10-Jul-26), the actual runtime DLLs ship flat under
+	$MyBin/GTK/ itself; release/ only holds build-time headers/import libs
+	(release/include, release/lib/epoxy.lib) with no release/bin at all.
+
+	Fix: both platform-neutral groups collapse into one group pointing at
+	$MyBin/GTK directly. The <lin:Group> is left untouched - Linux is a
+	separate CI runner with its own SDK download, and its own GTK layout may
+	be correct as shipped; do not carry this Windows-specific fix over there
+	without checking the Linux SDK archive first.
+-->
+<Package xmlns:win="windows" xmlns:mac="macOS" xmlns:lin="linux">
+	<lin:Group type="dynLib" path="$MyBin/GTK/release/lib">
+		<File name="adwaita-1-0"/>
+		<File name="cairo-2"/>
+		<File name="cairo-gobject-2"/>
+		<File name="cairo-script-interpreter-2"/>
+		<File name="epoxy-0"/>
+		<File name="ffi-7"/>
+		<File name="fontconfig-1"/>
+		<File name="freetype-6"/>
+		<File name="fribidi-0"/>
+		<File name="gdk_pixbuf-2.0-0"/>
+		<File name="gio-2.0-0"/>
+		<File name="glib-2.0-0"/>
+		<File name="gmodule-2.0-0"/>
+		<File name="gobject-2.0-0"/>
+		<File name="graphene-1.0-0"/>
+		<File name="gthread-2.0-0"/>
+		<File name="gtk-4-1"/>
+		<File name="harfbuzz-gobject"/>
+		<File name="harfbuzz-subset"/>
+		<File name="harfbuzz"/>
+		<File name="intl-8"/>
+		<File name="jpeg-8.2.2"/>
+		<File name="pango-1.0-0"/>
+		<File name="pangocairo-1.0-0"/>
+		<File name="pangowin32-1.0-0"/>
+		<File name="pixman-1-0"/>
+		<File name="pkgconf-4"/>
+		<File name="png16-16"/>
+		<File name="sass"/>
+		<File name="tiff4"/>
+		<File name="xml2-2"/>
+		<File name="z"/>
+	</lin:Group>
+
+	<!--
+		Windows: DLLs live directly under $MyBin/GTK, not $MyBin/GTK/release/bin.
+		File names/versions below were read directly off this machine's
+		bin\GTK\*.dll listing (dir /s /b), not copied from the stock XML - a
+		few version numbers differ from the Linux list above (e.g. ffi-8 not
+		ffi-7, jpeg62 not jpeg-8.2.2, xml2-16 not xml2-2) because they're a
+		different upstream build. If SetupCollector still reports a missing
+		file after this fix, re-run
+			dir C:\Users\Armin\natID.SDK\bin\GTK\*.dll
+		and diff it against this list rather than guessing.
+	-->
+	<Group type="dynLib" path="$MyBin/GTK">
+		<File name="adwaita-1-0"/>
+		<File name="cairo-2"/>
+		<File name="cairo-gobject-2"/>
+		<File name="cairo-script-interpreter-2"/>
+		<File name="epoxy-0"/>
+		<File name="ffi-8"/>
+		<File name="fontconfig-1"/>
+		<File name="freetype-6"/>
+		<File name="fribidi-0"/>
+		<File name="gdk_pixbuf-2.0-0"/>
+		<File name="gio-2.0-0"/>
+		<File name="girepository-2.0-0"/>
+		<File name="glib-2.0-0"/>
+		<File name="gmodule-2.0-0"/>
+		<File name="gobject-2.0-0"/>
+		<File name="graphene-1.0-0"/>
+		<File name="gthread-2.0-0"/>
+		<File name="gtk-4-1"/>
+		<File name="harfbuzz-cairo"/>
+		<File name="harfbuzz-gobject"/>
+		<File name="harfbuzz-gpu"/>
+		<File name="harfbuzz-raster"/>
+		<File name="harfbuzz-subset"/>
+		<File name="harfbuzz-vector"/>
+		<File name="harfbuzz"/>
+		<File name="iconv"/>
+		<File name="intl-8"/>
+		<File name="jpeg62"/>
+		<File name="libexpat"/>
+		<File name="libpng16"/>
+		<File name="pango-1.0-0"/>
+		<File name="pangocairo-1.0-0"/>
+		<File name="pangoft2-1.0-0"/>
+		<File name="pangowin32-1.0-0"/>
+		<File name="pcre2-16-0"/>
+		<File name="pcre2-32-0"/>
+		<File name="pcre2-8-0"/>
+		<File name="pcre2-posix-3"/>
+		<File name="pixman-1-0"/>
+		<File name="pkgconf-7"/>
+		<File name="rsvg-2-2"/>
+		<File name="sass"/>
+		<File name="tiff"/>
+		<File name="turbojpeg"/>
+		<File name="xml2-16"/>
+		<File name="zlib1"/>
+	</Group>
+</Package>

@@ -1,0 +1,74 @@
+<?xml version='1.0'?>
+<!--
+	SetupCollector configuration for the ACO/TSP solver.
+	Adapted from natID.SDK/DevEnv/SetupCollectors/maps.xml (prof. Dzafic's
+	B_S03_Maps installer config), which this project was built on top of.
+
+	Run it with:
+	    SetupCollector.exe %USERPROFILE%\Setups\TSP_ACO.xml
+
+	Resources are NOT listed here. SetupCollector reads res/DevRes.xml from the
+	"dev" folder below and pulls everything it references - res/main.xml,
+	res/tr/EN/main.xml, res/tr/BA/main.xml, res/maps/Bosnia.xml, plus the
+	Common/Icons, Common/Sounds and Common/Regionals entries from the SDK.
+-->
+<SetupCollector xmlns:win="windows" xmlns:mac="macOS" xmlns:lin="linux" executableName="TSP_ACO">
+
+	<!--
+		dev        - the source project. "~" is the home directory, so this is
+		             C:\Users\Armin\ACO_TSP_PROJECT locally. CI symlinks the
+		             checkout to the same path so this attribute never changes.
+		executable - Release build output. SOLUTION_NAME (CMakeLists.txt) and
+		             APP_NAME (TSP_ACO.cmake) are both TSP_ACO, so the folder and
+		             the binary share one name - same convention as maps.xml.
+		out        - where the installer is written.
+	-->
+	<Folders dev="~ACO_TSP_PROJECT"
+			 executable="$RAMDisk/Out/TSP_ACO/Release"
+			 out="$RAMDisk/Setup/TSP_ACO"/>
+
+	<Packages debug="false">
+		<Package name="natGUIALL"/>
+		<!--
+			Not in maps.xml - added because this project links MatrixLib
+			(dense::DblMatrix for the distance and pheromone matrices).
+			Without it the installed app is missing Matrix.dll / libMatrix.so
+			/ libMatrix.dylib and will not start.
+		-->
+		<Package name="Matrix"/>
+		<!-- GTK is bundled only on Windows; macOS and Linux use the system one. -->
+		<Package name="GTK4" exclude="macOS,linux"/>
+	</Packages>
+
+	<ResData>
+		<!-- GTK settings schemas, Windows only. Copied verbatim from maps.xml. -->
+		<Res type="folder" dev="$MyBin/GTK/release/share/glib-2.0/schemas" dep="schemas" exclude="macOS,linux"/>
+	</ResData>
+
+	<MutableResource/>
+
+	<Setup licenseFileName="~natID.SDK/DevEnv/License.txt"
+			categories="Education;Science"
+			win:programGroup="ETF Sarajevo"
+			win:width="440"
+			win:headerBackColor="#1E3A8A"
+			win:headerTxtColor="#FACC15"
+			win:licenseTxtColor="#846060"
+			win:useMakeCabinet="true"
+			win:minBuildNumber="17763"
+			lin:depends="$DepGTKv4"
+			lin:icon="~ACO_TSP_PROJECT/res/appIcon/lnx"/>
+
+	<!--
+		lin:icon points at a FOLDER of PNGs, not a file. maps.xml uses
+		$HOME/natID.SDK/Common/LinIcons/AIMaps; this points inside the project
+		instead so the icons live in the repository.
+
+		You must create res/appIcon/lnx/ containing lnxApp16.png, lnxApp32.png,
+		lnxApp48.png, lnxApp128.png and lnxApp256.png (export them from
+		res/appIcon/winApp.ico - at 196 KB it already holds every size).
+		Until that folder exists, delete the lin:icon line or the Linux build
+		will fail; the .deb then ships without a menu icon, which the workflow
+		patches in afterwards as a fallback.
+	-->
+</SetupCollector>

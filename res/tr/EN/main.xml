@@ -1,0 +1,121 @@
+<?xml version='1.0'?>
+<DevRes>
+	<Translations>
+		<Res id="appTitle" tr="ACO TSP Solver"/>
+		<Res id="Animation" tr="Animation"/>
+		<Res id="start" tr="Start"/>
+		<Res id="startTT" tr="Start the animation"/>
+		<Res id="stop" tr="Stop"/>
+		<Res id="stopTT" tr="Stop the animation"/>
+		<Res id="lblNumAnts" tr="Number of ants:"/>
+		<Res id="lblNumIterations" tr="Number of iterations:"/>
+		<Res id="lblAlpha" tr="Alpha (pheromone):"/>
+		<Res id="lblBeta" tr="Beta (heuristic):"/>
+		<Res id="lblEvaporation" tr="Evaporation rate:"/>
+		<Res id="lblSpeed" tr="Speed:"/>
+		<Res id="lblStart" tr="Start marker:"/>
+		<Res id="pathColor" tr="Path color:"/>
+		<Res id="convergenceTitle" tr="Convergence (best cost so far)"/>
+		<Res id="convergedAtIter" tr="Converged at iter %d"/>
+		<Res id="bestAtIter" tr="Best at iter %d (iter %d/%d)"/>
+		<Res id="convBest" tr="Best so far"/>
+		<Res id="convIterBest" tr="Iteration best"/>
+		<!-- Two-line label tagging the nearest-neighbour reference line at the right
+		     edge of the convergence chart (ViewConvergence.h). Was hardcoded English
+		     in the source, which was the one place the bilingual UI actually broke:
+		     the chart read "Nearest / neighbour 812" while the sidebar row beside it
+		     read "Najblizi susjed". Split across two keys because the label is drawn
+		     as two stacked lines to fit inside cMarginRight.
+		     convNN2 carries the %.0f - the value is appended in the translated
+		     string, so a language that puts the number first can do that. -->
+		<Res id="convNN1" tr="Nearest"/>
+		<Res id="convNN2" tr="neighbour %.0f"/>
+		<Res id="closeNOK" tr="Error! Animation is running!"/>
+		<Res id="cloeErr" tr="Stop Animation and then close the app!"/>
+		<Res id="settings" tr="Settings"/>
+		<Res id="settingsTT" tr="Settings (language, pheromone display)"/>
+		<!-- Settings -->
+		<Res id="dlgSettings" tr="Settings"/>
+		<Res id="lblLang" tr="Current application language:"/>
+		<Res id="lblLang2" tr="Application language after application's restart:"/>
+		<Res id="chbTBIcsAndLbls" tr="Show labels below icons on main toolbar"/>
+		<Res id="RestartRequired" tr="Restart the application"/>
+		<Res id="RestartRequiredInfo" tr="Some of the changed settings require restarting the application to take effect"/>
+		<Res id="Restart" tr="Restart"/>
+		<Res id="DoNoRestart" tr="Don't restart"/>
+		<Res id="chbShowTownNames" tr="Show town names"/>
+		<Res id="chbPlaySound" tr="Play sound while searching"/>
+		<Res id="lblPheromoneColor" tr="Pheromone color:"/>
+		<Res id="lblPheromoneMode" tr="Pheromone display:"/>
+		<!-- Renamed from pheromoneModeAll / pheromoneModeThreshold.
+		     natGUI's resource store keeps only the first 21 characters of a key, and
+		     "pheromoneModeThreshold" is 22 - it survived only because no other key
+		     shared its truncated prefix. Both are now well inside the limit. -->
+		<Res id="phModeAll" tr="All edges"/>
+		<Res id="phModeThreshold" tr="Threshold"/>
+		<Res id="reset" tr="Reset"/>
+		<Res id="resetTT" tr="Clear current results and start over"/>
+		<!-- Renamed from resetWhileRunning / resetWhileRunningInfo (17 and 21 chars).
+		     The Info key sat exactly on the 21-character truncation boundary, one
+		     character away from colliding with its own prefix - the same failure that
+		     forced newCitiesWhileRunning* to become newCitiesBusy*. -->
+		<Res id="resetBusy" tr="Cannot reset"/>
+		<Res id="resetBusyInfo" tr="Stop the current run before resetting."/>
+		<Res id="newCities" tr="New cities"/>
+		<Res id="newCitiesTT" tr="Select a new random set of cities"/>
+		<Res id="newCitiesBusy" tr="Cannot select new cities"/>
+		<Res id="newCitiesBusyInfo" tr="Stop the current run before selecting a new set of cities."/>
+		<Res id="exportCSV" tr="Export run (CSV)"/>
+		<!-- Toolbar tooltip for the Export CSV button (ToolBar.h, action
+		     cMenuAnimation/40). Distinct from "exportCSV" itself, which is used as
+		     both the menu item's label and the toolbar button's under-icon label -
+		     natGUI's toolbar items take a separate tooltip parameter, same pattern as
+		     startTT/stopTT/resetTT/newCitiesTT/compareRunsTT. -->
+		<Res id="exportCSVTT" tr="Export the finished run to CSV"/>
+		<Res id="exportBusy" tr="Cannot export"/>
+		<Res id="exportBusyInfo" tr="Stop the current run before exporting."/>
+		<Res id="exportNone" tr="Nothing to export"/>
+		<Res id="exportNoneInfo" tr="Run the algorithm at least once before exporting."/>
+		<Res id="exportOK" tr="Export complete"/>
+		<Res id="exportFail" tr="Export failed"/>
+		<Res id="lblSeed" tr="Seed (0=random):"/>
+		<Res id="statsTitle" tr="Run statistics"/>
+		<Res id="statsIter" tr="Iteration:"/>
+		<Res id="statsBest" tr="Best cost:"/>
+		<Res id="statsBestIter" tr="Best found at:"/>
+		<Res id="statsNN" tr="Nearest neighbour:"/>
+		<Res id="statsGain" tr="Improvement:"/>
+		<Res id="statsTime" tr="Runtime:"/>
+		<Res id="statsCities" tr="Cities:"/>
+		<Res id="statsAnts" tr="Ants:"/>
+		<Res id="statsSeed" tr="Seed:"/>
+		<Res id="statsStatus" tr="Status:"/>
+		<Res id="statusIdle" tr="Idle"/>
+		<Res id="statusRunning" tr="Running"/>
+		<Res id="statusConverged" tr="Converged"/>
+		<Res id="statusDone" tr="Finished"/>
+		<Res id="seedRandom" tr="random"/>
+		<!-- Compare last two completed runs (DialogCompare / ViewCompare) -->
+		<Res id="compareRuns" tr="Compare last 2 runs"/>
+		<Res id="compareTitle" tr="Comparison of the last two completed runs"/>
+		<Res id="compareBusy" tr="Cannot compare"/>
+		<Res id="compareBusyInfo" tr="Stop the current run before comparing."/>
+		<Res id="compareNone" tr="Not enough runs"/>
+		<Res id="compareNoneInfo" tr="Only %d completed run(s) are stored; two are needed. A run counts only if it reaches its LAST iteration - runs ended with the Stop button are deliberately not stored, because a shortened run's cost is not comparable. The history is also cleared whenever a new set of cities is drawn."/>
+		<Res id="compareTB" tr="Compare"/>
+		<Res id="compareRunsTT" tr="Compare the last two completed runs"/>
+		<Res id="cmpMetric" tr="Metric"/>
+		<Res id="cmpNewer" tr="Newer run"/>
+		<Res id="cmpOlder" tr="Older run"/>
+		<Res id="cmpDelta" tr="Difference"/>
+		<Res id="cmpGrpProblem" tr="Problem"/>
+		<Res id="cmpGrpParams" tr="Parameters"/>
+		<Res id="cmpGrpResult" tr="Result"/>
+		<Res id="cmpConverged" tr="Converged:"/>
+		<Res id="cmpFinalIter" tr="Final iteration best:"/>
+		<Res id="cmpMeanIter" tr="Mean iteration best:"/>
+		<Res id="cmpYes" tr="yes"/>
+		<Res id="cmpNo" tr="no"/>
+		<Res id="cmpNote" tr="Both runs were solved over the same set of cities."/>
+	</Translations>
+</DevRes>
