@@ -165,11 +165,15 @@ jobs:
       - name: Stage and zip the .app
         run: |
           mkdir -p "$GITHUB_WORKSPACE/installer-output"
-          APP_PATH=$(find $HOME/natID.RAMDisk/Setup -maxdepth 5 -type d -name "*.app" | head -1)
+          # -print0 / read -d '' - "ACO TSP Solver.app" has spaces, which break
+          # a plain `find | head -1` + `xargs basename` pipeline (xargs splits on
+          # whitespace by default).
+          APP_PATH=""
+          while IFS= read -r -d '' f; do APP_PATH="$f"; break; done < <(find $HOME/natID.RAMDisk/Setup -maxdepth 5 -type d -name "*.app" -print0)
           if [ -z "$APP_PATH" ]; then echo "ERROR: no .app bundle in Setup tree"; exit 1; fi
           cp -R "$APP_PATH" "$GITHUB_WORKSPACE/installer-output/"
           cd "$GITHUB_WORKSPACE/installer-output"
-          APP=$(find . -maxdepth 1 -type d -name "*.app" | head -1 | xargs basename)
+          APP="$(basename "$APP_PATH")"
           # ditto, not zip - it preserves the executable bit and resource forks
           ditto -c -k --keepParent --sequesterRsrc "$APP" ${{ env.APP_NAME }}-macOS-Silicon.zip
 
@@ -217,11 +221,12 @@ jobs:
       - name: Stage and zip the .app
         run: |
           mkdir -p "$GITHUB_WORKSPACE/installer-output"
-          APP_PATH=$(find $HOME/natID.RAMDisk/Setup -maxdepth 5 -type d -name "*.app" | head -1)
+          APP_PATH=""
+          while IFS= read -r -d '' f; do APP_PATH="$f"; break; done < <(find $HOME/natID.RAMDisk/Setup -maxdepth 5 -type d -name "*.app" -print0)
           if [ -z "$APP_PATH" ]; then echo "ERROR: no .app bundle in Setup tree"; exit 1; fi
           cp -R "$APP_PATH" "$GITHUB_WORKSPACE/installer-output/"
           cd "$GITHUB_WORKSPACE/installer-output"
-          APP=$(find . -maxdepth 1 -type d -name "*.app" | head -1 | xargs basename)
+          APP="$(basename "$APP_PATH")"
           ditto -c -k --keepParent --sequesterRsrc "$APP" ${{ env.APP_NAME }}-macOS-Intel.zip
 
       - uses: actions/upload-artifact@v4
