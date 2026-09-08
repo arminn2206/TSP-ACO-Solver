@@ -201,13 +201,18 @@ jobs:
           APP_PATH=""
           while IFS= read -r -d '' f; do APP_PATH="$f"; break; done < <(find $HOME/natID.RAMDisk/Setup -maxdepth 5 -type d -name "*.app" -print0)
           if [ -z "$APP_PATH" ]; then echo "ERROR: no .app bundle in Setup tree"; exit 1; fi
-          cp -R "$APP_PATH" "$GITHUB_WORKSPACE/installer-output/"
-          cd "$GITHUB_WORKSPACE/installer-output"
-          APP="$(basename "$APP_PATH")"
+          # ditto's zip mode (-c -k) only accepts ONE source, so the .app and
+          # README.txt are staged together in one folder first and that folder
+          # is zipped as a single source - not passed as two sources on one line.
+          ZIPSTAGE="$GITHUB_WORKSPACE/${{ env.APP_NAME }}-macOS-Silicon"
+          rm -rf "$ZIPSTAGE" && mkdir -p "$ZIPSTAGE"
+          cp -R "$APP_PATH" "$ZIPSTAGE/"
+          mv "$GITHUB_WORKSPACE/installer-output/README.txt" "$ZIPSTAGE/README.txt"
+          cd "$GITHUB_WORKSPACE"
           # ditto, not zip - it preserves the executable bit and resource forks.
-          # README.txt is listed explicitly: ditto only zips what's named on the
-          # command line, not everything sitting in the current folder.
-          ditto -c -k --keepParent --sequesterRsrc "$APP" README.txt ${{ env.APP_NAME }}-macOS-Silicon.zip
+          # ZIPSTAGE is the single source ditto's -c mode requires; unzipping the
+          # result gives one folder containing the .app and README.txt together.
+          ditto -c -k --keepParent --sequesterRsrc "$(basename "$ZIPSTAGE")" "installer-output/${{ env.APP_NAME }}-macOS-Silicon.zip"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -272,10 +277,12 @@ jobs:
           APP_PATH=""
           while IFS= read -r -d '' f; do APP_PATH="$f"; break; done < <(find $HOME/natID.RAMDisk/Setup -maxdepth 5 -type d -name "*.app" -print0)
           if [ -z "$APP_PATH" ]; then echo "ERROR: no .app bundle in Setup tree"; exit 1; fi
-          cp -R "$APP_PATH" "$GITHUB_WORKSPACE/installer-output/"
-          cd "$GITHUB_WORKSPACE/installer-output"
-          APP="$(basename "$APP_PATH")"
-          ditto -c -k --keepParent --sequesterRsrc "$APP" README.txt ${{ env.APP_NAME }}-macOS-Intel.zip
+          ZIPSTAGE="$GITHUB_WORKSPACE/${{ env.APP_NAME }}-macOS-Intel"
+          rm -rf "$ZIPSTAGE" && mkdir -p "$ZIPSTAGE"
+          cp -R "$APP_PATH" "$ZIPSTAGE/"
+          mv "$GITHUB_WORKSPACE/installer-output/README.txt" "$ZIPSTAGE/README.txt"
+          cd "$GITHUB_WORKSPACE"
+          ditto -c -k --keepParent --sequesterRsrc "$(basename "$ZIPSTAGE")" "installer-output/${{ env.APP_NAME }}-macOS-Intel.zip"
 
       - uses: actions/upload-artifact@v4
         with:
