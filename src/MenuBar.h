@@ -17,8 +17,11 @@ protected:
     {
         auto& items = subFirst.getItems();
         items[0].initAsActionItem(tr("settings"), 10); //prevedeno u natGUI
-        items[1].initAsSeparator();
-        items[2].initAsQuitAppActionItem(tr("Quit"), "q"); //prevedeno u natGUI
+        // Opens DialogHelp - a static explanation of what the app does and how to
+        // read it. actionID 20; handled in MainWindow::onActionItem alongside 10.
+        items[1].initAsActionItem(tr("help"), 20);
+        items[2].initAsSeparator();
+        items[3].initAsQuitAppActionItem(tr("Quit"), "q"); //prevedeno u natGUI
     }
 
     void populateThreadMenu()
@@ -43,7 +46,7 @@ protected:
 public:
     MenuBar()
         : gui::MenuBar(2) //App menu + Animation menu (Model menu removed: the app only ever loads Bosnia.xml)
-        , subFirst(cMenuApp, tr("App"), 3) //allocate items for the Application subMenu
+        , subFirst(cMenuApp, tr("App"), 4) //Settings, Help, separator, Quit
         , subThread(cMenuAnimation, tr("Animation"), 5) //allocate items for the Animation subMenu (Start, Reset, New cities, Export CSV, Compare runs)
     {
         populateFirstMenu();

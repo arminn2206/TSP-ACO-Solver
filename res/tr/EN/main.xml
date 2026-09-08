@@ -34,6 +34,8 @@
 		<Res id="cloeErr" tr="Stop Animation and then close the app!"/>
 		<Res id="settings" tr="Settings"/>
 		<Res id="settingsTT" tr="Settings (language, pheromone display)"/>
+		<Res id="help" tr="Help"/>
+		<Res id="dlgHelp" tr="How to use this app"/>
 		<!-- Settings -->
 		<Res id="dlgSettings" tr="Settings"/>
 		<Res id="lblLang" tr="Current application language:"/>

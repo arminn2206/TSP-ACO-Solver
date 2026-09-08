@@ -20,22 +20,16 @@
 		<Res id="bestAtIter" tr="Najbolje u iteraciji %d (iteracija %d/%d)"/>
 		<Res id="convBest" tr="Najbolje do sada"/>
 		<Res id="convIterBest" tr="Najbolje u iteraciji"/>
-		<!-- Dvolinijska oznaka referentne linije najbližeg susjeda na desnoj ivici
-		     grafa konvergencije (ViewConvergence.h). Ranije je bila tvrdo kodirana na
-		     engleskom - jedino mjesto gdje se dvojezičnost stvarno lomila: graf je
-		     pisao "Nearest / neighbour 812" dok je red pored njega u bočnoj traci
-		     pisao "Najbliži susjed". Podijeljeno u dva ključa jer se oznaka crta kao
-		     dva reda kako bi stala unutar cMarginRight.
-		     convNN2 nosi %.0f - vrijednost se dodaje unutar prevedenog stringa, pa
-		     jezik koji broj stavlja prvi to može uraditi. -->
 		<Res id="convNN1" tr="Najbliži"/>
-		<Res id="convNN2" tr="komšija %.0f"/>
+		<Res id="convNN2" tr="komsija %.0f"/>
 		<Res id="closeNOK" tr="Greška! Animacija je u toku!"/>
 		<Res id="cloeErr" tr="Zaustavite animaciju pa onda zatvorite aplikaciju!"/>
-		<Res id="settings" tr="Podešenja"/>
-		<Res id="settingsTT" tr="Podešenja (jezik, prikaz feromona)"/>
+		<Res id="settings" tr="Podešavanja"/>
+		<Res id="settingsTT" tr="Podešavanja (jezik, prikaz feromona)"/>
+		<Res id="help" tr="Pomoć"/>
+		<Res id="dlgHelp" tr="Kako koristiti aplikaciju"/>
 		<!-- Settings -->
-		<Res id="dlgSettings" tr="Podešenja"/>
+		<Res id="dlgSettings" tr="Podešavanja"/>
 		<Res id="lblLang" tr="Trenutni jezik aplikacija:"/>
 		<Res id="lblLang2" tr="Jezik aplikacije nakon njenog restarta:"/>
 		<Res id="chbTBIcsAndLbls" tr="Prikaži labele ispod ikona na alatnoj traci"/>
@@ -83,7 +77,7 @@
 		<Res id="statsIter" tr="Iteracija:"/>
 		<Res id="statsBest" tr="Najbolji trošak:"/>
 		<Res id="statsBestIter" tr="Najbolje u iteraciji:"/>
-		<Res id="statsNN" tr="Najbliži komšija:"/>
+		<Res id="statsNN" tr="Najbliži komsija:"/>
 		<Res id="statsGain" tr="Poboljšanje:"/>
 		<Res id="statsTime" tr="Trajanje:"/>
 		<Res id="statsCities" tr="Gradova:"/>

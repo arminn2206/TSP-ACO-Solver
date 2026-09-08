@@ -11,6 +11,7 @@
 #include <td/MutableString.h>
 #include "DialogSettings.h"
 #include "DialogCompare.h"
+#include "DialogHelp.h"
 #include <cassert>
 
 
@@ -27,6 +28,7 @@ protected:
     MainView _mainView;
     const td::UINT4 _cSettingsDlgID = 1000; //any unique id among dialogs
     const td::UINT4 _cCompareDlgID = 1001;  //Compare-last-two-runs dialog
+    const td::UINT4 _cHelpDlgID = 1002;     //App -> Help dialog
 
     // Scratch buffer for alert text that has to carry a number (see actionID == 50).
     td::MutableString _mStrAlert;
@@ -110,6 +112,10 @@ protected:
         if (dlgID == _cCompareDlgID)
             return true;
 
+        // Same as Compare: Help is read-only, nothing to write back.
+        if (dlgID == _cHelpDlgID)
+            return true;
+
         return false;
     }
 
@@ -121,6 +127,23 @@ protected:
         {
         case cMenuApp:
         {
+            if (actionID == 20)
+            {
+                // App -> Help: static explanation dialog, no live state to seed it
+                // with, unlike Settings.
+                auto pDlg = getAttachedWindow(_cHelpDlgID);
+                if (pDlg)
+                    pDlg->setFocus();
+                else
+                {
+                    DialogHelp* pHelpDlg = new DialogHelp(this, _cHelpDlgID);
+                    pHelpDlg->keepOnTopOfParent();
+                    pHelpDlg->open();
+                }
+                return true;
+            }
+
+            // actionID == 10 (Settings) and any other App-menu item falls through here.
             auto pDlg = getAttachedWindow(_cSettingsDlgID);
             if (pDlg)
                 pDlg->setFocus();
