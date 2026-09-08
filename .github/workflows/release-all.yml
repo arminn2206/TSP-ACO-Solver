@@ -120,7 +120,16 @@ jobs:
             Write-Error "No .msi produced - SetupCollector failed (check the log above)"
             exit 1
           }
-
+      - name: Add installation guide
+        shell: pwsh
+        run: |
+          @"
+          Windows Installation Guide
+          ===========================
+          Use the .MSI file (ACO TSP Solver.msi) - it's the recommended installer.
+          If Windows blocks the .EXE, that's a false SmartScreen alert (unsigned app). The .MSI works without warnings.
+          "@ | Out-File installer-output/README.txt -Encoding UTF8
+          
       - name: Zip installer pair
         shell: pwsh
         run: Compress-Archive -Path installer-output/* -DestinationPath ${{ env.APP_NAME }}-win.zip
