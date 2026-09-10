@@ -3,29 +3,31 @@
 <plist version="1.0">
 	<dict>
 		<key>CFBundleDevelopmentRegion</key>
-		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<string>en</string>
+		<!-- Must equal the CMake target / binary name in Contents/MacOS/ -->
 		<key>CFBundleExecutable</key>
-		<string>$(EXECUTABLE_NAME)</string>
+		<string>tspaco</string>
 		<key>CFBundleIconFile</key>
 		<string>macApp.icns</string>
 		<key>CFBundleIdentifier</key>
-		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<string>com.github.arminn2206.TSPACOSolver</string>
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
+		<!-- User-visible name, shown in the menu bar and About box -->
 		<key>CFBundleName</key>
-		<string>$(PRODUCT_NAME)</string>
+		<string>ACO TSP Solver</string>
 		<key>CFBundlePackageType</key>
-		<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
-		<string>1.0</string>
+		<string>1.1.2</string>
 		<key>CFBundleVersion</key>
 		<string>1</string>
 		<key>LSApplicationCategoryType</key>
 		<string>public.app-category.education</string>
 		<key>LSMinimumSystemVersion</key>
-		<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+		<string>12.3</string>
 		<key>NSHumanReadableCopyright</key>
-		<string>Copyright © 2026 Armin Memišević. Built on the natID framework by Izudin Džafić.</string>
+		<string>Copyright © 2026 Armin Memisevic. Built on the natID framework by Izudin Dzafic.</string>
 		<key>NSPrincipalClass</key>
 		<string>NSApplication</string>
 		<key>NSSupportsAutomaticTermination</key>
